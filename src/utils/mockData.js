@@ -1,97 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-// React.createElement => Object => HTMLElement(render)
-// React Core way of createElement
-// const heading = React.createElement(
-//   "h1",
-//   { id: "heading" },
-//   "Namaste React 🚀",
-// );
-
-// JSX (transpiled before it reaches the JS) - Parcel - Babel
-// JSX HTML-like or XML-like syntax
-// JSX => Babel transpiles it to React.createElement => ReactElement - JS Object => HTMLElement(render)
-
-// const elem = <span>React Element</span>;
-
-// const title = (
-//   <h1 className="head" tabIndex="1">
-//     {elem}
-//     Namaste React using JSX 🚀
-//   </h1>
-// );
-
-// React Functional Component
-// const HeadingComponent = () => (
-//   <div id="container">
-//     {title}
-//     <h1 className="heading">Namaste React Functional Component</h1>
-//   </div>
-// );
-
-/**
- * Header
- *  - Logo
- *  - Nav Items
- * Body
- *  - Search
- *  - RestaurantContainer
- *    - RestaurantCard
- *      - Img
- *      - Name of Res, Star rating, cuisine, delivery time
- * Footer
- *  - Copyright
- *  - Links
- *  - Address
- *  - Contact
- */
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuXxYaqVu1queKKXhi9BNyZvxr34hwIXTX0A&s"
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const RestaurantCard = (props) => {
-  const { resData } = props;
-
-  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
-    resData?.info;
-  return (
-    <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
-      <img
-        className="res-logo"
-        alt="Restaurant Card Image"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          cloudinaryImageId
-        }
-      />
-      <h3>{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating} Stars</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{sla.deliveryTime} minutes</h4>
-    </div>
-  );
-};
-
 const resList = [
   {
     type: "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
@@ -104,7 +10,7 @@ const resList = [
       areaName: "Malleshwaram",
       costForTwo: "₹600 for two",
       cuisines: ["Pizzas"],
-      avgRating: 4.1,
+      avgRating: 3.1,
       parentId: "721",
       avgRatingString: "4.1",
       totalRatingsString: "8.6K+",
@@ -352,7 +258,7 @@ const resList = [
       areaName: "Seshadripuram",
       costForTwo: "₹200 for two",
       cuisines: ["Waffle", "Desserts", "Ice Cream", "Beverages"],
-      avgRating: 4.4,
+      avgRating: 3.4,
       veg: true,
       parentId: "2233",
       avgRatingString: "4.4",
@@ -505,7 +411,7 @@ const resList = [
       areaName: "Seshadripuram",
       costForTwo: "₹400 for two",
       cuisines: ["Pizzas", "Pastas", "Italian", "Desserts", "Beverages"],
-      avgRating: 4.4,
+      avgRating: 3.5,
       parentId: "3534",
       avgRatingString: "4.4",
       totalRatingsString: "2.1K+",
@@ -742,30 +648,4 @@ const resList = [
   },
 ];
 
-// not using keys (not acceptable) <<<< index as key <<<<<<<< unique id (best practice)
-
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-        {resList.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);
+export default resList;
