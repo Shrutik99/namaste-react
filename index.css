@@ -49,7 +49,32 @@
   padding: 10px;
 }
 
+.filter {
+  display: flex;
+}
+
 .filter-btn {
   margin: 10px;
   cursor: pointer;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.shimmer-card {
+  width: 210px;
+  height: 400px;
+  background-color: #f0f0f0;
+  margin: 5px;
+}
+
+.login-btn {
+  padding: 0 20px;
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
+  align-self: center;
 }
