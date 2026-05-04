@@ -2,14 +2,17 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router";
 
 const Body = () => {
-  // State Variable - super powerful Variable
+  // Local State Variable - super powerful Variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  // whenever state variables update, react triggers a reconciliation cycle(re-renders a component)
 
   useEffect(() => {
     fetchData();
@@ -71,7 +74,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            to={"/restaurants/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
