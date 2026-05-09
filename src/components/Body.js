@@ -1,8 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // Local State Variable - super powerful Variable
@@ -34,6 +34,14 @@ const Body = () => {
         ?.restaurants,
     );
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return (
+      <h1>Looks like you're offline! Connect to the internet and try again!</h1>
+    );
+  }
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
